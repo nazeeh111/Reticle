@@ -1,0 +1,17 @@
+# Reticle
+
+A read-only calibration comparison for microscopy TIFF exports. The workflow is one source/export pair with explicit series selection, or a JSON manifest of such pairs. It produces terminal findings and portable JSON/HTML reports. It never rewrites an image or infers a missing physical scale from pixel dimensions.
+
+The decisive probe preserved all 288 synthetic uint16 pixel values while (a) dropping OME Z spacing in ordinary TIFF, (b) changing Z spacing from 1.5 to 3 micrometres, and (c) expressing unchanged X spacing as 250 nm instead of 0.25 micrometres. Ordinary TIFF retained X/Y through 40,000 pixels/cm. These cases need different findings.
+
+Existing tools: Fiji and Bio-Formats inspect and convert images; tifffile reads their metadata. Reticle's contribution is a reproducible comparison contract with per-axis provenance, explicit missing/changed/equivalent states and blocked ambiguous series mapping, rather than another image viewer. Demand and adoption are unmeasured.
+
+First supported analysis: local, single-file scalar OME-TIFF/BigTIFF with one or more Image elements and explicitly validated TiffData plane mapping; ordinary homogeneous scalar TIFF with X/Y resolution tags. The declared OME numeric scalar pixel type must match each mapped TIFF page's type. ImageJ, pyramids, RGB/interleaved channels, external OME references, unknown or unsupported pixel types and units, and inconsistent axes must be surfaced as unsupported/uncertain, never silently accepted. Metadata can be inspected when full mapping cannot be verified; comparison must not claim verified agreement then. Missing spatial calibration is distinct from zero; absent OME PhysicalSize units default to micrometres per schema. TIFF inch/cm tags are declared resolution, not independently measured calibration.
+
+No pixel equality claim in normal metadata-only comparison. No instrument accuracy, acquisition quality, registration, or clinical inference. Fixture generation can check pixel equality separately. No proprietary microscopy readers in this release.
+
+Implementation boundary: pure Python package with tifffile and defusedxml. No uploads, servers, optional providers or executable image content. CLI errors are explicit; outputs are escaped and refuse input-file overwrite. Bounded XML, finite positive numbers, fixed namespace recognition. New original code MIT, dependency notices retained.
+
+Core contract: inspect_file(path) -> dict with basename, format, series list and issues list. Series: index, name, shape (X/Y/Z/C/T integer dictionary where known), calibration dictionary X/Y/Z (each null or {value: original numeric text, unit: original unit, micrometres: decimal string, source: provenance}), verified_mapping boolean, issues list. Issue: {code, severity: 'warning'|'error', message}. Unsupported/unverified mappings carry an issue. Any malformed/unreadable input raises a descriptive ValueError. compare_series(source_series, export_series) -> {axes: [{axis,status:'same'|'changed'|'lost'|'gained'|'unknown',source,export}], shape_changes:[...], verified:bool, issues:[...]}. Equality uses Decimal exact unit conversion and relative tolerance 1e-9 for serialization roundoff, with no absolute tolerance hiding small scales.
+
+References: https://ome-model.readthedocs.io/en/stable/ome-tiff/specification.html ; https://github.com/ome/bioformats/issues/3523 ; https://imagej.net/imaging/annotating-images ; https://github.com/cgohlke/tifffile

@@ -1,0 +1,4 @@
+# Exact environment used for the initial synthetic probes.
+tifffile==2026.9.20
+defusedxml==0.7.1
+numpy==2.5.3

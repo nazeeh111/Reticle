@@ -1,0 +1,5 @@
+[
+  {"source": "source.ome.tif", "export": "changed.ome.tif"},
+  {"source": "source.ome.tif", "export": "unit-equivalent.ome.tif"},
+  {"source": "source.ome.tif", "export": "plain.tif"}
+]

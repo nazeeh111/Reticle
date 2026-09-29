@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reticle-calibration"
+version = "0.1.0"
+description = "Compare physical calibration metadata in microscopy TIFF exports."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [{name = "Nazeeh Abdul-Hadi"}]
+dependencies = ["tifffile==2026.9.20", "defusedxml==0.7.1"]
+
+[project.scripts]
+reticle = "reticle.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["reticle*"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
