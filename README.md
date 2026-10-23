@@ -4,6 +4,18 @@ Compare physical calibration metadata before and after a microscopy TIFF export.
 
 A file can retain every pixel while losing its Z spacing or changing its recorded pixel size. Reticle distinguishes missing, changed and equivalent calibration, including equivalent values written in different units. It reads images locally and produces text, JSON or a self-contained HTML report.
 
+<img src="docs/synthetic-comparison.png" width="960" alt="Reticle report from bundled synthetic TIFFs: X and Y spacing remain the same while Z changes from 1.5 to 3.0 micrometres.">
+
+*Actual Reticle 0.1.0 report from the included synthetic fixtures. The fixture generator independently confirms identical pixel arrays. The comparison itself reads metadata only; it does not verify pixel equality or instrument accuracy. [Saved HTML report](docs/synthetic-comparison.html), for local inspection.*
+
+| Synthetic export | What Reticle reports |
+| --- | --- |
+| Z spacing 1.5 → 3 µm | Differences found |
+| X spacing 0.25 µm → 250 nm | Verified agreement |
+| Ordinary TIFF drops Z labels/calibration | Cannot establish agreement; Z lost |
+
+[Run the examples](#run) · [Reproduce the shown report](#reproduce-the-shown-report) · [Comparison scope](#what-is-checked)
+
 ## Run
 
 Python 3.12 or later:
@@ -20,6 +32,16 @@ reticle examples/source.ome.tif examples/unit-equivalent.ome.tif --format html -
 The synthetic fixture generator writes only to `examples/`. The changed export has identical pixels and doubles the recorded Z spacing from 1.5 to 3 µm. The equivalent export records X spacing as 250 nm instead of 0.25 µm. Open the HTML report in a browser; it contains no image pixels, scripts or remote assets.
 
 Exit codes: `0` means required calibration values agree and the supported plane mapping was checked; `1` means a calibration or dimension difference, or missing required calibration; `2` means a file, mapping or input could not be checked. Agreement does not prove instrument accuracy or pixel equality.
+
+## Reproduce the shown report
+
+After generating the fixtures above, compare the three existing pairs:
+
+```sh
+reticle --manifest examples/pairs.json --format html --output comparison.html
+```
+
+Open `comparison.html` locally. This demonstration exits **2** because the ordinary TIFF pair has unverified plane mapping; its other two results remain in the report. Reusing an existing report path is refused. Choose a new filename to generate another report. The saved example contains no image pixels, JavaScript or remote assets.
 
 ## Select the image series
 
