@@ -88,6 +88,6 @@ python -m unittest discover -s tests -v
 Synthetic fixtures test metadata changes independently of pixel content. No private microscopy data is included.
 For a release check, build a wheel with `python -m pip wheel --no-deps --wheel-dir dist .`, install it in a fresh virtual environment, and run its `reticle` command from outside this checkout with `PYTHONPATH` unset. Run `python scripts/verify_workflow.py` against the generated examples and check both batch reports and output-file refusal. Local check results and remaining limits belong in the release evidence; a local pass does not stand in for a live CI run.
 
-## Related tools
+## License
 
-[Fiji](https://imagej.net/software/fiji/) and [Bio-Formats](https://www.openmicroscopy.org/bio-formats/) provide image inspection and conversion. Reticle complements them with an explicit source/export comparison. The TIFF reader is [tifffile](https://github.com/cgohlke/tifffile), and XML is parsed with [defusedxml](https://github.com/tiran/defusedxml). Their licenses remain applicable to those dependencies. Original Reticle code is MIT licensed.
+Reticle is [MIT licensed](LICENSE). Its TIFF reader, [tifffile](https://github.com/cgohlke/tifffile), and XML parser, [defusedxml](https://github.com/tiran/defusedxml), retain their own licenses.
