@@ -26,10 +26,10 @@ python -m venv .venv
 python -m pip install .
 python examples/make_fixtures.py
 reticle examples/source.ome.tif examples/changed.ome.tif
-reticle examples/source.ome.tif examples/unit-equivalent.ome.tif --format html --output comparison.html
+reticle examples/source.ome.tif examples/unit-equivalent.ome.tif --format html --output unit-equivalent.html
 ```
 
-The synthetic fixture generator writes only to `examples/`. The changed export has identical pixels and doubles the recorded Z spacing from 1.5 to 3 µm. The equivalent export records X spacing as 250 nm instead of 0.25 µm. Open the HTML report in a browser; it contains no image pixels, scripts or remote assets.
+The synthetic fixture generator writes only to `examples/`. The changed export has identical pixels and doubles the recorded Z spacing from 1.5 to 3 µm. The equivalent export records X spacing as 250 nm instead of 0.25 µm. Open `unit-equivalent.html` in a browser; it contains no image pixels, scripts or remote assets. The three-pair example below writes a separate `comparison.html` report.
 
 Exit codes: `0` means required calibration values agree and the supported plane mapping was checked; `1` means a calibration or dimension difference, or missing required calibration; `2` means a file, mapping or input could not be checked. Agreement does not prove instrument accuracy or pixel equality.
 
