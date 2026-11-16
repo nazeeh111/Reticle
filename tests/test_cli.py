@@ -77,7 +77,7 @@ class CliTests(unittest.TestCase):
             source = Path(root) / "source.tif"
             source.write_bytes(b"original image bytes")
             with (
-                patch("reticle.cli.inspect_file") as inspect,
+                patch("reticle.batch.inspect_snapshot") as inspect,
                 contextlib.redirect_stderr(io.StringIO()),
             ):
                 self.assertEqual(main([str(source), "export.tif", "--output", str(source)]), 2)
@@ -88,7 +88,7 @@ class CliTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as root:
             source = Path(root) / "missing.tif"
             with (
-                patch("reticle.cli.inspect_file") as inspect,
+                patch("reticle.batch.inspect_snapshot") as inspect,
                 contextlib.redirect_stderr(io.StringIO()),
             ):
                 self.assertEqual(main([str(source), "export.tif", "--output", str(source)]), 2)
@@ -101,7 +101,7 @@ class CliTests(unittest.TestCase):
             target = Path(root) / "missing"
             output.symlink_to(target)
             with (
-                patch("reticle.cli.inspect_file") as inspect,
+                patch("reticle.batch.inspect_snapshot") as inspect,
                 contextlib.redirect_stderr(io.StringIO()),
             ):
                 self.assertEqual(main(["source", "export", "--output", str(output)]), 2)
@@ -115,7 +115,7 @@ class CliTests(unittest.TestCase):
                 json.dumps([{"source": "a", "export": "b"}, {"source": "c", "export": "d"}])
             )
             output = io.StringIO()
-            with patch("reticle.cli.inspect_file", side_effect=ValueError("not a TIFF")) as inspect:
+            with patch("reticle.batch.inspect_snapshot", side_effect=ValueError("not a TIFF")) as inspect:
                 with contextlib.redirect_stdout(output):
                     status = main(["--manifest", str(manifest), "--format", "json"])
             self.assertEqual(status, 2)

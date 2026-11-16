@@ -6,58 +6,8 @@ import sys
 from pathlib import Path
 
 from . import __version__
-from .core import compare_series, inspect_file
+from .batch import compare_batch, compare_pair, exit_status, select_series, recheck_report, open_regular
 from .report import html_report, pair_status, text_report
-
-
-def select_series(document, index, label):
-    series = document["series"]
-    if index is None:
-        if len(series) != 1:
-            raise ValueError(f"{label} contains {len(series)} series; select one explicitly")
-        return series[0]
-    if type(index) is not int or index < 0 or index >= len(series):
-        raise ValueError(f"{label} series index {index!r} is out of range")
-    return series[index]
-
-
-def compare_pair(pair):
-    result = {
-        "source": pair.get("display_source", str(pair["source"])),
-        "export": pair.get("display_export", str(pair["export"])),
-    }
-    try:
-        source = inspect_file(pair["source"])
-        exported = inspect_file(pair["export"])
-        s = select_series(source, pair.get("source_series"), "Source")
-        x = select_series(exported, pair.get("export_series"), "Export")
-        comparison = compare_series(s, x)
-        issues = []
-        for issue in (
-            source["issues"] + exported["issues"] + s["issues"] + x["issues"] + comparison["issues"]
-        ):
-            if issue not in issues:
-                issues.append(issue)
-        result.update(
-            source_series=s["index"], export_series=x["index"], comparison=comparison, issues=issues
-        )
-    except (ValueError, OSError) as error:
-        message = str(error)
-        for key in ("source", "export"):
-            path = Path(pair[key])
-            spellings = {str(path)}
-            try:
-                spellings.add(str(path.resolve()))
-            except (OSError, RuntimeError):
-                pass
-            for spelling in spellings:
-                message = message.replace(spelling, result[key])
-        result["error"] = message
-    return result
-
-
-def exit_status(report):
-    return max((pair_status(pair) for pair in report["pairs"]), default=0)
 
 
 def load_manifest(path):
@@ -98,12 +48,13 @@ def load_manifest(path):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        description="Compare physical calibration metadata in microscopy TIFF exports."
+        description="Compare microscopy TIFF calibration metadata, not pixel equality or physical accuracy.",
+        epilog="Exit 0: verified agreement; 1: calibration/dimension difference or required value missing; 2: input or mapping could not be checked. JSON receipts contain absolute input paths. Recheck only trusted reports."
     )
-    parser.add_argument("source", nargs="?")
-    parser.add_argument("export", nargs="?")
-    parser.add_argument("--source-series", type=int)
-    parser.add_argument("--export-series", type=int)
+    parser.add_argument("source", nargs="?", help="Source TIFF")
+    parser.add_argument("export", nargs="?", help="Export TIFF")
+    parser.add_argument("--source-series", type=int, help="Zero-based source series index")
+    parser.add_argument("--export-series", type=int, help="Zero-based export series index")
     parser.add_argument(
         "--manifest", help="JSON array of explicit source/export pairs; paths relative to manifest"
     )
@@ -111,9 +62,22 @@ def main(argv=None):
     parser.add_argument(
         "--output", type=Path, help="Create a new report file; existing files are never overwritten"
     )
+    parser.add_argument("--recheck", type=Path, help="Reinspect paths in a trusted JSON receipt; retain its aggregate exit status")
     parser.add_argument("--version", action="version", version=__version__)
     args = parser.parse_args(argv)
     try:
+        if args.recheck:
+            if args.source or args.export or args.manifest or args.source_series is not None or args.export_series is not None or args.output or args.format != "text":
+                parser.error("--recheck cannot be combined with other inputs or output options")
+            with open_regular(args.recheck, 4 * 1024 * 1024, "Receipt") as stream:
+                receipt_bytes = stream.read(4 * 1024 * 1024 + 1)
+            if len(receipt_bytes) > 4 * 1024 * 1024:
+                raise ValueError("Receipt exceeds 4 MiB")
+            report = json.loads(receipt_bytes)
+            recheck_report(report)
+            status = exit_status(report)
+            print(f"Receipt matches current inputs and policy; aggregate exit {status}.")
+            return status
         if args.manifest:
             if (
                 args.source
@@ -145,7 +109,7 @@ def main(argv=None):
             raise ValueError("Output cannot be an input path")
         if args.output and (args.output.exists() or args.output.is_symlink()):
             raise ValueError("Output already exists; choose a new report path")
-        report = {"version": __version__, "pairs": [compare_pair(pair) for pair in pairs]}
+        report = compare_batch(pairs)
         if args.format == "json":
             content = json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
         elif args.format == "html":
@@ -155,6 +119,7 @@ def main(argv=None):
         if args.output:
             with args.output.open("x", encoding="utf-8") as stream:
                 stream.write(content)
+            print(f"Report written: {args.output}; aggregate exit {exit_status(report)}.", file=sys.stderr)
         else:
             sys.stdout.write(content)
         return exit_status(report)

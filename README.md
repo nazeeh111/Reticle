@@ -18,18 +18,22 @@ A file can retain every pixel while losing its Z spacing or changing its recorde
 
 ## Run
 
-Python 3.12 or later:
+Python 3.12 or later. This checkout is `0.1.1.dev0`; the [v0.1.0 release](https://github.com/nazeeh111/Reticle/releases/tag/v0.1.0) remains a historical snapshot without source-bound recheck receipts.
 
 ```sh
+git clone https://github.com/nazeeh111/Reticle.git
+cd Reticle
 python -m venv .venv
 . .venv/bin/activate
 python -m pip install .
 python examples/make_fixtures.py
 reticle examples/source.ome.tif examples/changed.ome.tif
+# Exit 1: recorded Z spacing changed.
 reticle examples/source.ome.tif examples/unit-equivalent.ome.tif --format html --output unit-equivalent.html
+# Exit 0: 0.25 µm and 250 nm describe the same X spacing.
 ```
 
-The synthetic fixture generator writes only to `examples/`. The changed export has identical pixels and doubles the recorded Z spacing from 1.5 to 3 µm. The equivalent export records X spacing as 250 nm instead of 0.25 µm. Open `unit-equivalent.html` in a browser; it contains no image pixels, scripts or remote assets. The three-pair example below writes a separate `comparison.html` report.
+Run the commands separately if your shell stops on a nonzero exit. The synthetic fixture generator writes only to `examples/` and refuses to replace an existing generated fixture. The changed export has identical pixels and doubles the recorded Z spacing from 1.5 to 3 µm. The equivalent export records X spacing as 250 nm instead of 0.25 µm. Open `unit-equivalent.html` in a browser; it contains no image pixels, scripts or remote assets. The three-pair example below writes a separate `comparison.html` report.
 
 Exit codes: `0` means required calibration values agree and the supported plane mapping was checked; `1` means a calibration or dimension difference, or missing required calibration; `2` means a file, mapping or input could not be checked. Agreement does not prove instrument accuracy or pixel equality.
 
@@ -65,7 +69,7 @@ reticle --manifest pairs.json --format json --output calibration.json
 ```
 
 Reports never overwrite existing files or input paths. A failed pair is included in the report and does not suppress results from other pairs.
-Each pair has a verdict: verified agreement, differences found, or agreement cannot be established. The report keeps manifest-relative paths so equally named files remain distinguishable.
+Each pair has a verdict: verified agreement, differences found, or agreement cannot be established. Display names keep manifest-relative paths so equally named files remain distinguishable. JSON receipts also contain resolved absolute input paths; treat them as potentially sensitive.
 
 ## What is checked
 
@@ -91,3 +95,11 @@ For a release check, build a wheel with `python -m pip wheel --no-deps --wheel-d
 ## License
 
 Reticle is [MIT licensed](LICENSE). Its TIFF reader, [tifffile](https://github.com/cgohlke/tifffile), and XML parser, [defusedxml](https://github.com/tiran/defusedxml), retain their own licenses.
+
+### Rechecking a saved JSON report
+
+JSON reports include a versioned policy, each selected series, and SHA-256 and byte length for the exact source and export snapshots inspected. The receipt records absolute input paths; treat reports as potentially sensitive. Run `reticle --recheck calibration.json` from any directory to re-inspect those paths and require the same bytes, selections, policy and comparison. A mismatch, incomplete report, report from another Reticle version, or unreadable input exits 2; a matching report retains its original aggregate status. Only recheck trusted reports: their paths identify files that will be read. Text and HTML are presentation formats and are not replay receipts.
+
+For byte identity, Reticle copies and hashes each entire input before inspecting its metadata; it does not decode pixels. Each input is limited to 1 GiB, and temporary storage must hold one full input during inspection. A file edited during copying can produce a mixed snapshot: the receipt binds the bytes actually inspected, not a claim that the snapshot existed as an atomic source generation. A later file change is detected on recheck; no protection is claimed against edits after a successful recheck. These checks do not establish pixel equality or physical calibration.
+
+Image and recheck-receipt inputs must be regular files. Reticle opens and checks the actual file descriptor without waiting on pipes, checks the declared file size before reading, and enforces the size limit while reading as well. This admission depends on operating-system nonblocking file-open support; platforms without it refuse the operation. Recheck compares JSON value types as well as values, so changing a boolean to a number does not preserve a receipt.
