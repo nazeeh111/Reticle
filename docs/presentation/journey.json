@@ -1,0 +1,588 @@
+{
+  "source_commit": "7b2ef38b7506aabc01745b3eae68ff035960c1de",
+  "scope": "Synthetic fixture generator pixel equality independently decoded; Reticle metadata only",
+  "shape": [
+    3,
+    8,
+    12
+  ],
+  "pixels": [
+    [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      [
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      [
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83
+      ],
+      [
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95
+      ]
+    ],
+    [
+      [
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107
+      ],
+      [
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119
+      ],
+      [
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131
+      ],
+      [
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143
+      ],
+      [
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155
+      ],
+      [
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167
+      ],
+      [
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179
+      ],
+      [
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191
+      ]
+    ],
+    [
+      [
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203
+      ],
+      [
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ],
+      [
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227
+      ],
+      [
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239
+      ],
+      [
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251
+      ],
+      [
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263
+      ],
+      [
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275
+      ],
+      [
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287
+      ]
+    ]
+  ],
+  "all288SamplesEqualAcross4Fixtures": true,
+  "recordedZmicrometres": [
+    1.5,
+    3.0
+  ],
+  "relativePlaneCentersSource": [
+    0,
+    1.5,
+    3
+  ],
+  "relativePlaneCentersExport": [
+    0,
+    3,
+    6
+  ],
+  "origin": "chosen zero for illustration; no absolute Plane PositionZ is asserted",
+  "thumbnail": "native12\u00d78 gray cells, common linear0..287\u21920..255; no interpolation; insetheight not Z thickness",
+  "unitsControl": "0.25 micrometres =250nanometres",
+  "expectedExits": [
+    1,
+    0,
+    2
+  ],
+  "sourceBoundReceiptRechecks": [
+    1,
+    0
+  ],
+  "changedBytesSameMetadataReceiptRefused": true,
+  "restoredReceiptAcceptedAgain": true,
+  "typed0toFloat0Refused": true,
+  "existingOutputAndInputsPreserved": true,
+  "runs": [
+    {
+      "args": [
+        "/private/tmp/reticle-presentation-20261117/inputs/make_fixtures.py"
+      ],
+      "exit": 0,
+      "stdout": "[\n  {\n    \"file\": \"changed.ome.tif\",\n    \"ifds\": 3,\n    \"first_plane_pixels\": [\n      12,\n      8\n    ],\n    \"resolution_unit\": \"1\",\n    \"x_resolution\": [\n      1,\n      1\n    ],\n    \"physical_metadata\": {\n      \"PhysicalSizeX\": \"0.25\",\n      \"PhysicalSizeXUnit\": \"\\u00b5m\",\n      \"PhysicalSizeY\": \"0.25\",\n      \"PhysicalSizeYUnit\": \"\\u00b5m\",\n      \"PhysicalSizeZ\": \"3.0\",\n      \"PhysicalSizeZUnit\": \"\\u00b5m\"\n    },\n    \"pixels_equal\": true\n  },\n  {\n    \"file\": \"plain.tif\",\n    \"ifds\": 3,\n    \"first_plane_pixels\": [\n      12,\n      8\n    ],\n    \"resolution_unit\": \"3\",\n    \"x_resolution\": [\n      40000,\n      1\n    ],\n    \"physical_metadata\": {},\n    \"pixels_equal\": true\n  },\n  {\n    \"file\": \"source.ome.tif\",\n    \"ifds\": 3,\n    \"first_plane_pixels\": [\n      12,\n      8\n    ],\n    \"resolution_unit\": \"1\",\n    \"x_resolution\": [\n      1,\n      1\n    ],\n    \"physical_metadata\": {\n      \"PhysicalSizeX\": \"0.25\",\n      \"PhysicalSizeXUnit\": \"\\u00b5m\",\n      \"PhysicalSizeY\": \"0.25\",\n      \"PhysicalSizeYUnit\": \"\\u00b5m\",\n      \"PhysicalSizeZ\": \"1.5\",\n      \"PhysicalSizeZUnit\": \"\\u00b5m\"\n    },\n    \"pixels_equal\": true\n  },\n  {\n    \"file\": \"unit-equivalent.ome.tif\",\n    \"ifds\": 3,\n    \"first_plane_pixels\": [\n      12,\n      8\n    ],\n    \"resolution_unit\": \"1\",\n    \"x_resolution\": [\n      1,\n      1\n    ],\n    \"physical_metadata\": {\n      \"PhysicalSizeX\": \"250\",\n      \"PhysicalSizeXUnit\": \"nm\",\n      \"PhysicalSizeY\": \"0.25\",\n      \"PhysicalSizeYUnit\": \"\\u00b5m\",\n      \"PhysicalSizeZ\": \"1.5\",\n      \"PhysicalSizeZUnit\": \"\\u00b5m\"\n    },\n    \"pixels_equal\": true\n  }\n]\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+        "/private/tmp/reticle-presentation-20261117/inputs/changed.ome.tif",
+        "--format",
+        "json",
+        "--output",
+        "/private/tmp/reticle-presentation-20261117/changed.json"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Report written: /private/tmp/reticle-presentation-20261117/changed.json; aggregate exit 1.\n"
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+        "/private/tmp/reticle-presentation-20261117/inputs/unit-equivalent.ome.tif",
+        "--format",
+        "json",
+        "--output",
+        "/private/tmp/reticle-presentation-20261117/unit-equivalent.json"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "Report written: /private/tmp/reticle-presentation-20261117/unit-equivalent.json; aggregate exit 0.\n"
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+        "/private/tmp/reticle-presentation-20261117/inputs/plain.tif",
+        "--format",
+        "json",
+        "--output",
+        "/private/tmp/reticle-presentation-20261117/plain.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Report written: /private/tmp/reticle-presentation-20261117/plain.json; aggregate exit 2.\n"
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "--manifest",
+        "/private/tmp/reticle-presentation-20261117/pairs.json",
+        "--format",
+        "html",
+        "--output",
+        "/private/tmp/reticle-presentation-20261117/comparison.html"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Report written: /private/tmp/reticle-presentation-20261117/comparison.html; aggregate exit 2.\n"
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "--manifest",
+        "/private/tmp/reticle-presentation-20261117/pairs.json",
+        "--format",
+        "json",
+        "--output",
+        "/private/tmp/reticle-presentation-20261117/comparison.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Report written: /private/tmp/reticle-presentation-20261117/comparison.json; aggregate exit 2.\n"
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "--recheck",
+        "/private/tmp/reticle-presentation-20261117/changed.json"
+      ],
+      "exit": 1,
+      "stdout": "Receipt matches current inputs and policy; aggregate exit 1.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "--recheck",
+        "/private/tmp/reticle-presentation-20261117/unit-equivalent.json"
+      ],
+      "exit": 0,
+      "stdout": "Receipt matches current inputs and policy; aggregate exit 0.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "--recheck",
+        "/private/tmp/reticle-presentation-20261117/changed.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "reticle: Receipt differs from current inputs or comparison\n"
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+        "/private/tmp/reticle-presentation-20261117/inputs/changed.ome.tif",
+        "--format",
+        "json"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"version\": \"0.1.1.dev0\",\n  \"receipt_policy\": \"reticle-metadata-1\",\n  \"pairs\": [\n    {\n      \"source\": \"/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif\",\n      \"export\": \"/private/tmp/reticle-presentation-20261117/inputs/changed.ome.tif\",\n      \"source_series\": 0,\n      \"export_series\": 0,\n      \"comparison\": {\n        \"axes\": [\n          {\n            \"axis\": \"X\",\n            \"status\": \"same\",\n            \"required\": true,\n            \"source\": {\n              \"value\": \"0.25\",\n              \"unit\": \"\u00b5m\",\n              \"micrometres\": \"0.25\",\n              \"source\": \"OME PhysicalSize\"\n            },\n            \"export\": {\n              \"value\": \"0.25\",\n              \"unit\": \"\u00b5m\",\n              \"micrometres\": \"0.25\",\n              \"source\": \"OME PhysicalSize\"\n            }\n          },\n          {\n            \"axis\": \"Y\",\n            \"status\": \"same\",\n            \"required\": true,\n            \"source\": {\n              \"value\": \"0.25\",\n              \"unit\": \"\u00b5m\",\n              \"micrometres\": \"0.25\",\n              \"source\": \"OME PhysicalSize\"\n            },\n            \"export\": {\n              \"value\": \"0.25\",\n              \"unit\": \"\u00b5m\",\n              \"micrometres\": \"0.25\",\n              \"source\": \"OME PhysicalSize\"\n            }\n          },\n          {\n            \"axis\": \"Z\",\n            \"status\": \"changed\",\n            \"required\": true,\n            \"source\": {\n              \"value\": \"1.5\",\n              \"unit\": \"\u00b5m\",\n              \"micrometres\": \"1.5\",\n              \"source\": \"OME PhysicalSize\"\n            },\n            \"export\": {\n              \"value\": \"3.0\",\n              \"unit\": \"\u00b5m\",\n              \"micrometres\": \"3.0\",\n              \"source\": \"OME PhysicalSize\"\n            }\n          }\n        ],\n        \"shape_changes\": [],\n        \"verified\": true,\n        \"issues\": []\n      },\n      \"issues\": [],\n      \"receipt\": {\n        \"source\": {\n          \"path\": \"/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif\",\n          \"sha256\": \"5cdbfa9094dce9f97557133acb49a4188afb05d7f1f2cabbfcb81f9483f847fc\",\n          \"bytes\": 1905\n        },\n        \"export\": {\n          \"path\": \"/private/tmp/reticle-presentation-20261117/inputs/changed.ome.tif\",\n          \"sha256\": \"0861c9b212d92145f511f748aa1b566a4352712814794d0957ecf2f7ac872e8a\",\n          \"bytes\": 1926\n        }\n      }\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "--recheck",
+        "/private/tmp/reticle-presentation-20261117/changed.json"
+      ],
+      "exit": 1,
+      "stdout": "Receipt matches current inputs and policy; aggregate exit 1.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "--recheck",
+        "/private/tmp/reticle-presentation-20261117/tampered.json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "reticle: Receipt differs from current inputs or comparison\n"
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "--manifest",
+        "/private/tmp/reticle-presentation-20261117/pairs.json",
+        "--format",
+        "html",
+        "--output",
+        "/private/tmp/reticle-presentation-20261117/comparison.html"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "reticle: Output already exists; choose a new report path\n"
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+        "/private/tmp/reticle-presentation-20261117/inputs/changed.ome.tif",
+        "--format",
+        "html",
+        "--output",
+        "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "reticle: Output cannot be an input path\n"
+    },
+    {
+      "args": [
+        "-m",
+        "reticle",
+        "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+        "/private/tmp/reticle-presentation-20261117/inputs/no-file.tif",
+        "--format",
+        "json"
+      ],
+      "exit": 2,
+      "stdout": "{\n  \"version\": \"0.1.1.dev0\",\n  \"receipt_policy\": \"reticle-metadata-1\",\n  \"pairs\": [\n    {\n      \"source\": \"/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif\",\n      \"export\": \"/private/tmp/reticle-presentation-20261117/inputs/no-file.tif\",\n      \"error\": \"Cannot read input\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/private/tmp/reticle-presentation-20261117/inputs/make_fixtures.py"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Fixture output exists; move prior generated fixtures before regenerating.\n"
+    }
+  ]
+}

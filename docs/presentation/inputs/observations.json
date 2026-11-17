@@ -1,0 +1,83 @@
+[
+  {
+    "file": "changed.ome.tif",
+    "ifds": 3,
+    "first_plane_pixels": [
+      12,
+      8
+    ],
+    "resolution_unit": "1",
+    "x_resolution": [
+      1,
+      1
+    ],
+    "physical_metadata": {
+      "PhysicalSizeX": "0.25",
+      "PhysicalSizeXUnit": "\u00b5m",
+      "PhysicalSizeY": "0.25",
+      "PhysicalSizeYUnit": "\u00b5m",
+      "PhysicalSizeZ": "3.0",
+      "PhysicalSizeZUnit": "\u00b5m"
+    },
+    "pixels_equal": true
+  },
+  {
+    "file": "plain.tif",
+    "ifds": 3,
+    "first_plane_pixels": [
+      12,
+      8
+    ],
+    "resolution_unit": "3",
+    "x_resolution": [
+      40000,
+      1
+    ],
+    "physical_metadata": {},
+    "pixels_equal": true
+  },
+  {
+    "file": "source.ome.tif",
+    "ifds": 3,
+    "first_plane_pixels": [
+      12,
+      8
+    ],
+    "resolution_unit": "1",
+    "x_resolution": [
+      1,
+      1
+    ],
+    "physical_metadata": {
+      "PhysicalSizeX": "0.25",
+      "PhysicalSizeXUnit": "\u00b5m",
+      "PhysicalSizeY": "0.25",
+      "PhysicalSizeYUnit": "\u00b5m",
+      "PhysicalSizeZ": "1.5",
+      "PhysicalSizeZUnit": "\u00b5m"
+    },
+    "pixels_equal": true
+  },
+  {
+    "file": "unit-equivalent.ome.tif",
+    "ifds": 3,
+    "first_plane_pixels": [
+      12,
+      8
+    ],
+    "resolution_unit": "1",
+    "x_resolution": [
+      1,
+      1
+    ],
+    "physical_metadata": {
+      "PhysicalSizeX": "250",
+      "PhysicalSizeXUnit": "nm",
+      "PhysicalSizeY": "0.25",
+      "PhysicalSizeYUnit": "\u00b5m",
+      "PhysicalSizeZ": "1.5",
+      "PhysicalSizeZUnit": "\u00b5m"
+    },
+    "pixels_equal": true
+  }
+]

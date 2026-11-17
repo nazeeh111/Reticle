@@ -1,0 +1,18 @@
+{
+  "python": "3.14.7 (v3.14.7:823f0323ee6, Aug  5 2026, 07:07:01) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "tifffile": "2026.9.20",
+  "numpy": "2.5.3",
+  "defusedxml": "0.7.1",
+  "reticle": "0.1.1.dev0",
+  "sourceRoute": "isolated official declareddependencies, installed unmodified current source from external archive copy",
+  "fixtureRoot": "/private/tmp/reticle-presentation-20261117",
+  "reticle_source_sha256": {
+    "batch.py": "771e46b1061ea271276a418c2596bb64beb779fc3240550a2557bf6b300afa34",
+    "__init__.py": "ad779253be55db85b4249800a7928c9de48c9e283fb89e17dbbd4e44bf9eea7e",
+    "core.py": "5f7a14dff9b836f10a85dc8281d84c55ff6a163601eab242b7231acb7ce92c64",
+    "cli.py": "a8aff0a6e717404d1ec6def505a3dccaffd75995c9d986eb9cd764a329e55f51",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "report.py": "10717f796fa48a38a65103fe996c49974c6a852136105a1174ea2560711575eb"
+  },
+  "external_dependencies": "Install the pinned current source; no native runtime/dependencies embedded in worked archive"
+}

@@ -1,0 +1,6 @@
+* text=auto eol=lf
+
+# Exact synthetic receipts, metadata and generated evidence.
+docs/presentation/*.json -text -eol
+docs/presentation/*.svg -text -eol
+docs/presentation/inputs/*.tif -text -eol
