@@ -104,3 +104,12 @@ JSON reports include a versioned policy, each selected series, and SHA-256 and b
 For byte identity, Reticle copies and hashes each entire input before inspecting its metadata; it does not decode pixels. Each input is limited to 1 GiB, and temporary storage must hold one full input during inspection. A file edited during copying can produce a mixed snapshot: the receipt binds the bytes actually inspected, not a claim that the snapshot existed as an atomic source generation. A later file change is detected on recheck; no protection is claimed against edits after a successful recheck. These checks do not establish pixel equality or physical calibration.
 
 Image and recheck-receipt inputs must be regular files. Reticle opens and checks the actual file descriptor without waiting on pipes, checks the declared file size before reading, and enforces the size limit while reading as well. This admission depends on operating-system nonblocking file-open support; platforms without it refuse the operation. Recheck compares JSON value types as well as values, so changing a boolean to a number does not preserve a receipt.
+
+Batch manifests use the same regular-file admission, with a separate 1 MiB
+limit. Reports are completely written and flushed to an owned sibling stage,
+then published without replacing an existing destination. A failed write leaves
+the final path available for retry. This requires filesystem hard-link support.
+If publication succeeds but stage cleanup fails, the complete report is retained
+and stderr identifies the leftover stage. Abrupt termination can leave a stage;
+keep parent directories stable. Directory durability after power loss and hostile
+directory races are not established.
