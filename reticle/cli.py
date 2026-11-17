@@ -2,19 +2,54 @@
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
+from uuid import uuid4
 
 from . import __version__
 from .batch import compare_batch, compare_pair, exit_status, select_series, recheck_report, open_regular
 from .report import html_report, pair_status, text_report
 
 
+def _read_bytes(path, limit, label):
+    with open_regular(path, limit, label) as stream:
+        raw = stream.read(limit + 1)
+    if len(raw) > limit:
+        raise ValueError(f"{label} exceeds size limit")
+    return raw
+
+
+def _write_report(path, content):
+    """Publish one complete report without replacing another writer's output."""
+    stage = path.with_name(f".reticle-{uuid4().hex}.tmp")
+    descriptor = None
+    published = False
+    try:
+        descriptor = os.open(stage, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o666)
+        try:
+            stream = os.fdopen(descriptor, "w", encoding="utf-8")
+        except BaseException:
+            os.close(descriptor)
+            raise
+        with stream:
+            stream.write(content)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.link(stage, path)
+        published = True
+    finally:
+        if descriptor is not None:
+            try:
+                stage.unlink()
+            except OSError as error:
+                outcome = f"Report saved at {path}" if published else "Report was not published"
+                print(f"reticle: {outcome}; staging cleanup failed at {stage}: {error}", file=sys.stderr)
+
+
 def load_manifest(path):
     path = Path(path)
-    if path.stat().st_size > 1024 * 1024:
-        raise ValueError("Manifest exceeds 1 MiB")
-    pairs = json.loads(path.read_text(encoding="utf-8"))
+    pairs = json.loads(_read_bytes(path, 1024 * 1024, "Manifest").decode("utf-8"))
     if not isinstance(pairs, list) or not 1 <= len(pairs) <= 100:
         raise ValueError("Manifest must contain 1–100 source/export pairs")
     result = []
@@ -69,10 +104,7 @@ def main(argv=None):
         if args.recheck:
             if args.source or args.export or args.manifest or args.source_series is not None or args.export_series is not None or args.output or args.format != "text":
                 parser.error("--recheck cannot be combined with other inputs or output options")
-            with open_regular(args.recheck, 4 * 1024 * 1024, "Receipt") as stream:
-                receipt_bytes = stream.read(4 * 1024 * 1024 + 1)
-            if len(receipt_bytes) > 4 * 1024 * 1024:
-                raise ValueError("Receipt exceeds 4 MiB")
+            receipt_bytes = _read_bytes(args.recheck, 4 * 1024 * 1024, "Receipt")
             report = json.loads(receipt_bytes)
             recheck_report(report)
             status = exit_status(report)
@@ -117,8 +149,7 @@ def main(argv=None):
         else:
             content = text_report(report)
         if args.output:
-            with args.output.open("x", encoding="utf-8") as stream:
-                stream.write(content)
+            _write_report(args.output, content)
             print(f"Report written: {args.output}; aggregate exit {exit_status(report)}.", file=sys.stderr)
         else:
             sys.stdout.write(content)
