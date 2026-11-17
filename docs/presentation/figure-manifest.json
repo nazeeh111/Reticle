@@ -1,0 +1,18 @@
+{
+  "source_main": "7b2ef38b7506aabc01745b3eae68ff035960c1de",
+  "encoding": "576 gray native sample cells, common linear0..287 mapping; two common0..6micrometre relative-Zrulers at40/32SVGunits per micrometre forwide/phone; origin chosen zero, no slice thickness or physical truth inferred",
+  "files": {
+    "figure.py": "254550b3575017db19072f535d6097d1ec9eaafe6c5f2ee34a2e7e9c3380300e",
+    "journey.json": "3df68ebf8629c36a79e71548a5f70a16d8def7a3020e87c262b3e433ed4f0fee",
+    "changed.json": "aef2745c83b37de6997f0c64a9e32cb69feedeb2bc85ef7b0151cc9e6a711632",
+    "unit-equivalent.json": "4f73652d10d27826dbee4c4089d59eebd52f7f46efecc266f10ed1dfd0c36db6",
+    "plain.json": "9060755159a93143cf0674ef02fbc348ddd8ed9aa0457e32c7feb3cd1338bb43",
+    "spacing.svg": "eca109c1f8aa4237fa4f82514827d167e33bf5805d6394029dde5f877c0a42b1",
+    "spacing-mobile.svg": "e31e8010c621b082bf9fc090f4e63a3d4ab20da2dc1a61050481d911cffebfc0",
+    "spacing.png": "2cfca5d6ac38304bce486c8ab2e85fa5720b966828bd08d21cdcf7c8da181581",
+    "spacing-mobile.png": "ba2a67a3af37fc717875b8405f6b414e61eb0b638fa85fbc5c4de124bd5f48a9",
+    "inputs/observations.json": "9764aa76e47d61e71748e6467eb7a018dda74de124f771fcf1b9baeaef58379b",
+    "inputs/source.ome.tif": "5cdbfa9094dce9f97557133acb49a4188afb05d7f1f2cabbfcb81f9483f847fc",
+    "inputs/changed.ome.tif": "2ddcb1e920ba0e96cf7e7c0176425cdfa62e0fc3c6927539f3c2dec00fae3f4d"
+  }
+}

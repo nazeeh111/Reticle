@@ -1,20 +1,21 @@
 # Reticle
 
-Compare physical calibration metadata before and after a microscopy TIFF export.
+**The pixels can stay. The calibration can change.**
 
-A file can retain every pixel while losing its Z spacing or changing its recorded pixel size. Reticle distinguishes missing, changed and equivalent calibration, including equivalent values written in different units. It reads images locally and produces text, JSON or a self-contained HTML report.
+Reticle compares recorded microscopy TIFF calibration before and after export. It checks supported plane mappings, normalizes units and retains exact input identities in JSON receipts. It reads metadata, not specimen pixels or instrument accuracy.
 
-<img src="docs/synthetic-comparison.png" width="960" alt="Reticle report from bundled synthetic TIFFs: X and Y spacing remain the same while Z changes from 1.5 to 3.0 micrometres.">
+<picture>
+  <source media="(max-width: 600px)" srcset="docs/presentation/spacing-mobile.png">
+  <img src="docs/presentation/spacing.png" alt="Actual synthetic TIFF comparison: the same three 8 by 12 sample planes retain every value while recorded Z spacing changes from 1.5 to 3 micrometres. Common relative-Z rulers use zero chosen for illustration; thumbnails do not depict slice thickness. Reticle compares metadata, while the fixture generator separately confirms identical arrays.">
+</picture>
 
-*Actual Reticle 0.1.0 report from the included synthetic fixtures. The fixture generator independently confirms identical pixel arrays. The comparison itself reads metadata only; it does not verify pixel equality or instrument accuracy. [Saved HTML report](docs/synthetic-comparison.html), for local inspection.*
+**Same samples, different recorded spacing.** In the new [completed installed-CLI run](docs/presentation/README.md), source and changed export share all 288 synthetic samples. Their declared Z steps differ, so Reticle exits **1**. The separate `0.25 µm → 250 nm` control agrees and exits **0**. An ordinary TIFF loses Z information and has unverified plane mapping; the mixed batch retains all three results and exits **2**.
 
-| Synthetic export | What Reticle reports |
-| --- | --- |
-| Z spacing 1.5 → 3 µm | Differences found |
-| X spacing 0.25 µm → 250 nm | Verified agreement |
-| Ordinary TIFF drops Z labels/calibration | Cannot establish agreement; Z lost |
+[Reopen the complete worked example](docs/presentation/worked-example.zip) · [Actual native HTML report](docs/presentation/comparison.html) · [JSON receipt](docs/presentation/comparison.json) · [Units, ruler and recheck details](docs/presentation/README.md)
 
-[Run the examples](#run) · [Reproduce the shown report](#reproduce-the-shown-report) · [Comparison scope](#what-is-checked)
+A fresh receipt recheck detects changed input bytes even when metadata still agrees. This binds an inspected snapshot; it does not prove physical calibration or pixel equality. Saved HTML is a local report, so GitHub displays its source. Download and extract the worked example to open it.
+
+The [original 0.1.0 report](docs/synthetic-comparison.html) and [capture](docs/synthetic-comparison.png) remain historical and unchanged. Current source is `0.1.1.dev0`; the existing setup, series selection, batch and recheck routes follow.
 
 ## Run
 

@@ -1,0 +1,14 @@
+[
+  {
+    "source": "inputs/source.ome.tif",
+    "export": "inputs/changed.ome.tif"
+  },
+  {
+    "source": "inputs/source.ome.tif",
+    "export": "inputs/unit-equivalent.ome.tif"
+  },
+  {
+    "source": "inputs/source.ome.tif",
+    "export": "inputs/plain.tif"
+  }
+]

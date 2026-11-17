@@ -1,0 +1,254 @@
+{
+  "version": "0.1.1.dev0",
+  "receipt_policy": "reticle-metadata-1",
+  "pairs": [
+    {
+      "source": "inputs/source.ome.tif",
+      "export": "inputs/changed.ome.tif",
+      "source_series": 0,
+      "export_series": 0,
+      "comparison": {
+        "axes": [
+          {
+            "axis": "X",
+            "status": "same",
+            "required": true,
+            "source": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            },
+            "export": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            }
+          },
+          {
+            "axis": "Y",
+            "status": "same",
+            "required": true,
+            "source": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            },
+            "export": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            }
+          },
+          {
+            "axis": "Z",
+            "status": "changed",
+            "required": true,
+            "source": {
+              "value": "1.5",
+              "unit": "µm",
+              "micrometres": "1.5",
+              "source": "OME PhysicalSize"
+            },
+            "export": {
+              "value": "3.0",
+              "unit": "µm",
+              "micrometres": "3.0",
+              "source": "OME PhysicalSize"
+            }
+          }
+        ],
+        "shape_changes": [],
+        "verified": true,
+        "issues": []
+      },
+      "issues": [],
+      "receipt": {
+        "source": {
+          "path": "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+          "sha256": "5cdbfa9094dce9f97557133acb49a4188afb05d7f1f2cabbfcb81f9483f847fc",
+          "bytes": 1905
+        },
+        "export": {
+          "path": "/private/tmp/reticle-presentation-20261117/inputs/changed.ome.tif",
+          "sha256": "2ddcb1e920ba0e96cf7e7c0176425cdfa62e0fc3c6927539f3c2dec00fae3f4d",
+          "bytes": 1905
+        }
+      }
+    },
+    {
+      "source": "inputs/source.ome.tif",
+      "export": "inputs/unit-equivalent.ome.tif",
+      "source_series": 0,
+      "export_series": 0,
+      "comparison": {
+        "axes": [
+          {
+            "axis": "X",
+            "status": "same",
+            "required": true,
+            "source": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            },
+            "export": {
+              "value": "250",
+              "unit": "nm",
+              "micrometres": "0.250",
+              "source": "OME PhysicalSize"
+            }
+          },
+          {
+            "axis": "Y",
+            "status": "same",
+            "required": true,
+            "source": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            },
+            "export": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            }
+          },
+          {
+            "axis": "Z",
+            "status": "same",
+            "required": true,
+            "source": {
+              "value": "1.5",
+              "unit": "µm",
+              "micrometres": "1.5",
+              "source": "OME PhysicalSize"
+            },
+            "export": {
+              "value": "1.5",
+              "unit": "µm",
+              "micrometres": "1.5",
+              "source": "OME PhysicalSize"
+            }
+          }
+        ],
+        "shape_changes": [],
+        "verified": true,
+        "issues": []
+      },
+      "issues": [],
+      "receipt": {
+        "source": {
+          "path": "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+          "sha256": "5cdbfa9094dce9f97557133acb49a4188afb05d7f1f2cabbfcb81f9483f847fc",
+          "bytes": 1905
+        },
+        "export": {
+          "path": "/private/tmp/reticle-presentation-20261117/inputs/unit-equivalent.ome.tif",
+          "sha256": "e885b1468e1cb1e23648408b110935b23412b9ba42a7d6b018b19c1b273ff9c0",
+          "bytes": 1903
+        }
+      }
+    },
+    {
+      "source": "inputs/source.ome.tif",
+      "export": "inputs/plain.tif",
+      "source_series": 0,
+      "export_series": 0,
+      "comparison": {
+        "axes": [
+          {
+            "axis": "X",
+            "status": "same",
+            "required": true,
+            "source": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            },
+            "export": {
+              "value": "40000/1",
+              "unit": "pixels/cm",
+              "micrometres": "0.25",
+              "source": "TIFF XResolution/ResolutionUnit"
+            }
+          },
+          {
+            "axis": "Y",
+            "status": "same",
+            "required": true,
+            "source": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            },
+            "export": {
+              "value": "40000/1",
+              "unit": "pixels/cm",
+              "micrometres": "0.25",
+              "source": "TIFF YResolution/ResolutionUnit"
+            }
+          },
+          {
+            "axis": "Z",
+            "status": "lost",
+            "required": true,
+            "source": {
+              "value": "1.5",
+              "unit": "µm",
+              "micrometres": "1.5",
+              "source": "OME PhysicalSize"
+            },
+            "export": null
+          }
+        ],
+        "shape_changes": [],
+        "verified": false,
+        "issues": [
+          {
+            "code": "unlabeled_pages",
+            "severity": "warning",
+            "message": "Ordinary TIFF pages have no verified Z/C/T labels"
+          },
+          {
+            "code": "unverified_comparison",
+            "severity": "warning",
+            "message": "At least one series mapping or layout is unverified"
+          }
+        ]
+      },
+      "issues": [
+        {
+          "code": "unlabeled_pages",
+          "severity": "warning",
+          "message": "Ordinary TIFF pages have no verified Z/C/T labels"
+        },
+        {
+          "code": "unverified_comparison",
+          "severity": "warning",
+          "message": "At least one series mapping or layout is unverified"
+        }
+      ],
+      "receipt": {
+        "source": {
+          "path": "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+          "sha256": "5cdbfa9094dce9f97557133acb49a4188afb05d7f1f2cabbfcb81f9483f847fc",
+          "bytes": 1905
+        },
+        "export": {
+          "path": "/private/tmp/reticle-presentation-20261117/inputs/plain.tif",
+          "sha256": "821ac127927bf5ec2580d0e97cae66647f6e8f8d99b526d727bf253a0f9ea254",
+          "bytes": 1116
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "version": "0.1.1.dev0",
+  "receipt_policy": "reticle-metadata-1",
+  "pairs": [
+    {
+      "source": "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+      "export": "/private/tmp/reticle-presentation-20261117/inputs/plain.tif",
+      "source_series": 0,
+      "export_series": 0,
+      "comparison": {
+        "axes": [
+          {
+            "axis": "X",
+            "status": "same",
+            "required": true,
+            "source": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            },
+            "export": {
+              "value": "40000/1",
+              "unit": "pixels/cm",
+              "micrometres": "0.25",
+              "source": "TIFF XResolution/ResolutionUnit"
+            }
+          },
+          {
+            "axis": "Y",
+            "status": "same",
+            "required": true,
+            "source": {
+              "value": "0.25",
+              "unit": "µm",
+              "micrometres": "0.25",
+              "source": "OME PhysicalSize"
+            },
+            "export": {
+              "value": "40000/1",
+              "unit": "pixels/cm",
+              "micrometres": "0.25",
+              "source": "TIFF YResolution/ResolutionUnit"
+            }
+          },
+          {
+            "axis": "Z",
+            "status": "lost",
+            "required": true,
+            "source": {
+              "value": "1.5",
+              "unit": "µm",
+              "micrometres": "1.5",
+              "source": "OME PhysicalSize"
+            },
+            "export": null
+          }
+        ],
+        "shape_changes": [],
+        "verified": false,
+        "issues": [
+          {
+            "code": "unlabeled_pages",
+            "severity": "warning",
+            "message": "Ordinary TIFF pages have no verified Z/C/T labels"
+          },
+          {
+            "code": "unverified_comparison",
+            "severity": "warning",
+            "message": "At least one series mapping or layout is unverified"
+          }
+        ]
+      },
+      "issues": [
+        {
+          "code": "unlabeled_pages",
+          "severity": "warning",
+          "message": "Ordinary TIFF pages have no verified Z/C/T labels"
+        },
+        {
+          "code": "unverified_comparison",
+          "severity": "warning",
+          "message": "At least one series mapping or layout is unverified"
+        }
+      ],
+      "receipt": {
+        "source": {
+          "path": "/private/tmp/reticle-presentation-20261117/inputs/source.ome.tif",
+          "sha256": "5cdbfa9094dce9f97557133acb49a4188afb05d7f1f2cabbfcb81f9483f847fc",
+          "bytes": 1905
+        },
+        "export": {
+          "path": "/private/tmp/reticle-presentation-20261117/inputs/plain.tif",
+          "sha256": "821ac127927bf5ec2580d0e97cae66647f6e8f8d99b526d727bf253a0f9ea254",
+          "bytes": 1116
+        }
+      }
+    }
+  ]
+}
