@@ -98,11 +98,12 @@ def main(argv=None):
         "--output", type=Path, help="Create a new report file; existing files are never overwritten"
     )
     parser.add_argument("--recheck", type=Path, help="Reinspect paths in a trusted JSON receipt; retain its aggregate exit status")
+    parser.add_argument("--progress", action="store_true", help="Show pair-level progress on stderr")
     parser.add_argument("--version", action="version", version=__version__)
     args = parser.parse_args(argv)
     try:
         if args.recheck:
-            if args.source or args.export or args.manifest or args.source_series is not None or args.export_series is not None or args.output or args.format != "text":
+            if args.source or args.export or args.manifest or args.source_series is not None or args.export_series is not None or args.output or args.format != "text" or args.progress:
                 parser.error("--recheck cannot be combined with other inputs or output options")
             receipt_bytes = _read_bytes(args.recheck, 4 * 1024 * 1024, "Receipt")
             report = json.loads(receipt_bytes)
@@ -141,7 +142,11 @@ def main(argv=None):
             raise ValueError("Output cannot be an input path")
         if args.output and (args.output.exists() or args.output.is_symlink()):
             raise ValueError("Output already exists; choose a new report path")
-        report = compare_batch(pairs)
+        def progress(index, total, status):
+            message = "inspecting" if status is None else ("agreement", "differences", "unverified")[status]
+            print(f"reticle: pair {index}/{total}: {message}", file=sys.stderr, flush=True)
+
+        report = compare_batch(pairs, progress=progress if args.progress else None)
         if args.format == "json":
             content = json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
         elif args.format == "html":
