@@ -10,7 +10,8 @@ from . import __version__
 from .core import compare_series, inspect_file
 from .report import pair_status
 
-POLICY = "reticle-metadata-1"
+POLICY = "reticle-metadata-2"
+LEGACY_POLICY = "reticle-metadata-1"
 MAX_INPUT_BYTES = 1024 * 1024 * 1024
 
 def select_series(document, index, label):
@@ -42,7 +43,9 @@ def compare_pair(pair):
             if issue not in issues:
                 issues.append(issue)
         result.update(
-            source_series=s["index"], export_series=x["index"], comparison=comparison, issues=issues,
+            source_series=s["index"], export_series=x["index"],
+            source_series_name=s["name"], export_series_name=x["name"],
+            comparison=comparison, issues=issues,
             receipt={"source": source_id, "export": export_id}
         )
     except (ValueError, OSError) as error:
@@ -112,15 +115,22 @@ def inspect_snapshot(path):
     return document, {"path": str(original), "sha256": digest.hexdigest(), "bytes": size}
 
 
-def compare_batch(pairs):
+def compare_batch(pairs, progress=None):
     if not 1 <= len(pairs) <= 100:
         raise ValueError("Batch must contain 1–100 pairs")
-    return {"version": __version__, "receipt_policy": POLICY,
-            "pairs": [compare_pair(pair) for pair in pairs]}
+    results = []
+    for index, pair in enumerate(pairs, 1):
+        if progress is not None:
+            progress(index, len(pairs), None)
+        result = compare_pair(pair)
+        results.append(result)
+        if progress is not None:
+            progress(index, len(pairs), pair_status(result))
+    return {"version": __version__, "receipt_policy": POLICY, "pairs": results}
 
 
 def recheck_report(report):
-    if not isinstance(report, dict) or report.get("version") != __version__ or report.get("receipt_policy") != POLICY:
+    if not isinstance(report, dict) or report.get("version") != __version__ or report.get("receipt_policy") not in (POLICY, LEGACY_POLICY):
         raise ValueError("Unsupported or missing receipt policy")
     pairs = report.get("pairs")
     if not isinstance(pairs, list) or not 1 <= len(pairs) <= 100:
@@ -132,6 +142,14 @@ def recheck_report(report):
                     "source_series": saved["source_series"], "export_series": saved["export_series"],
                     "display_source": saved["source"], "display_export": saved["export"]}
             current = compare_pair(pair)
+            # Receipts produced before series names were included remain valid.
+            # All original fields are still compared, including byte identities.
+            names = ("source_series_name", "export_series_name")
+            if report["receipt_policy"] == LEGACY_POLICY:
+                if any(key in saved for key in names):
+                    raise ValueError("Legacy receipt contains unexpected series names")
+                for key in names:
+                    current.pop(key, None)
             if not json_equal(current, saved):
                 raise ValueError("Receipt differs from current inputs or comparison")
         except (KeyError, TypeError, AttributeError) as exc:
